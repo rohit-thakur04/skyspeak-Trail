@@ -31,10 +31,19 @@ export const Navbar = () => {
     >
       <nav className="container flex items-center justify-between h-16 md:h-20">
         <Link to="/" className="flex items-center gap-2 group">
-          <span className={`p-2 rounded-xl ${scrolled ? "bg-primary text-primary-foreground" : "glass-dark text-primary-foreground"}`}>
-            <Plane className="w-5 h-5 -rotate-45 transition-transform group-hover:rotate-0" />
+          <span
+            className={`p-2 rounded-xl ${scrolled ? "bg-primary text-primary-foreground" : "glass-dark text-primary-foreground"}`}
+          >
+            {/* <Plane className="w-5 h-5 -rotate-45 transition-transform group-hover:rotate-0" /> */}
+            <img
+              src="/logo.jpg"
+              alt="SkySpeak Academy"
+              className="h-10 w-auto"
+            />
           </span>
-          <span className={`font-display text-xl md:text-2xl font-bold ${scrolled ? "text-primary" : "text-primary-foreground"}`}>
+          <span
+            className={`font-display text-xl md:text-2xl font-bold ${scrolled ? "text-primary" : "text-primary-foreground"}`}
+          >
             Skyspeak <span className="gradient-text">Academy</span>
           </span>
         </Link>
@@ -57,7 +66,11 @@ export const Navbar = () => {
           <Button
             variant="ghost"
             onClick={() => toast.info("Login coming soon — please enquire!")}
-            className={scrolled ? "" : "text-primary-foreground hover:bg-white/10 hover:text-primary-foreground"}
+            className={
+              scrolled
+                ? ""
+                : "text-primary-foreground hover:bg-white/10 hover:text-primary-foreground"
+            }
           >
             Login
           </Button>

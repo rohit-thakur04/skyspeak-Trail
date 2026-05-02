@@ -51,7 +51,9 @@ export const Hero = () => {
             <Button
               size="lg"
               variant="outline"
-              onClick={() => toast.info("Login coming soon — submit an enquiry!")}
+              onClick={() =>
+                toast.info("Login coming soon — submit an enquiry!")
+              }
               className="glass border-white/40 text-primary-foreground hover:bg-white/20 hover:text-primary-foreground text-base px-8 h-12"
             >
               Login
@@ -59,14 +61,14 @@ export const Hero = () => {
           </div>
 
           <div className="mt-12 grid grid-cols-3 gap-6 max-w-md">
-            {[
-              { n: "5K+", l: "Students" },
-              { n: "95%", l: "Placement" },
-              { n: "12+", l: "Years" },
-            ].map((s) => (
+            {[{ n: "95%", l: "Job Assistance" }].map((s) => (
               <div key={s.l} className="text-center">
-                <div className="font-display text-2xl md:text-3xl font-bold text-accent">{s.n}</div>
-                <div className="text-xs md:text-sm text-primary-foreground/75">{s.l}</div>
+                <div className="font-display text-2xl md:text-3xl font-bold text-accent">
+                  {s.n}
+                </div>
+                <div className="text-xs md:text-sm text-primary-foreground/75">
+                  {s.l}
+                </div>
               </div>
             ))}
           </div>

@@ -63,8 +63,9 @@ export const Contact = () => {
                 icon: MapPin,
                 title: "Address",
                 lines: [
-                  "Niket Anand Complex",
-                  "Jagdeo Path Opposite Panna Lal Petrol Pump ",
+                  "1E ,Niket Anand Complex - 1st Floor",
+                  "Jagdeo Path Opposite Panna Lal",
+                  "Pillar No.10",
                   "Patna-800014",
                 ],
               },

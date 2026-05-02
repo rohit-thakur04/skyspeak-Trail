@@ -2,17 +2,10 @@ import { Check } from "lucide-react";
 import { SectionHeading } from "./SectionHeading";
 import bg from "@/assets/highlights-bg.jpg";
 
-const stats = [
-  { n: "5,000+", l: "Students Trained" },
-  { n: "95%", l: "Placement Rate" },
-  { n: "12+", l: "Years Experience" },
-  { n: "40+", l: "Industry Partners" },
-];
+const stats = [{ n: "95%", l: "Job Assistance" }];
 
 const points = [
   "Live mock interviews with airline HR",
-  "Airport visits & runway exposure tours",
-  "IATA-aligned certified curriculum",
   "Personality grooming labs & wardrobe coaching",
   "Resume building and LinkedIn optimization",
   "Cabin emergency & first-aid simulations",
@@ -36,7 +29,11 @@ export const Highlights = () => (
       <SectionHeading
         light
         eyebrow="Special Highlights"
-        title={<>What Makes Skyspeak <span className="gradient-text">Different</span></>}
+        title={
+          <>
+            What Makes Skyspeak <span className="gradient-text">Different</span>
+          </>
+        }
         subtitle="A full-spectrum training experience designed around real airline expectations."
       />
 
@@ -47,7 +44,9 @@ export const Highlights = () => (
             className="reveal glass-dark rounded-2xl p-6 text-center"
             style={{ transitionDelay: `${i * 80}ms` }}
           >
-            <div className="font-display text-4xl md:text-5xl font-bold gradient-text mb-1">{s.n}</div>
+            <div className="font-display text-4xl md:text-5xl font-bold gradient-text mb-1">
+              {s.n}
+            </div>
             <div className="text-sm text-primary-foreground/80">{s.l}</div>
           </div>
         ))}
