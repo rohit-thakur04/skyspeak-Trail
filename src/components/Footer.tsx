@@ -15,7 +15,7 @@ export const Footer = () => (
         </Link> */}
         <Link to="/" className="flex items-center gap-2 mb-4">
           <img
-            src="/logo.jpg"
+            src="/Logo.jpg"
             alt="Skyspeak Logo"
             className="w-10 h-10 object-contain"
           />
