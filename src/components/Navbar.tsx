@@ -36,7 +36,7 @@ export const Navbar = () => {
           >
             {/* <Plane className="w-5 h-5 -rotate-45 transition-transform group-hover:rotate-0" /> */}
             <img
-              src="/logo.jpg"
+              src="/Logo.jpg"
               alt="SkySpeak Academy"
               className="h-10 w-auto"
             />
