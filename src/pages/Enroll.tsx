@@ -19,6 +19,7 @@ import { COURSES, enrollSchema, type EnrollValues } from "@/lib/schemas";
 
 const Enroll = () => {
   const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -26,24 +27,19 @@ const Enroll = () => {
     reset,
     watch,
     formState: { errors, isSubmitting },
-  } = useForm<EnrollValues>({ resolver: zodResolver(enrollSchema) });
+  } = useForm<EnrollValues>({
+    resolver: zodResolver(enrollSchema),
+  });
 
-  // const onSubmit = async (data: EnrollValues) => {
-  //   await new Promise((r) => setTimeout(r, 700));
-  //   toast.success(`Welcome aboard, ${data.name.split(" ")[0]}! We've received your enrollment for ${data.course}.`);
-  //   reset();
-  //   setTimeout(() => navigate("/"), 1200);
-  // };
-  const onSubmit = async (data) => {
+  const onSubmit = async (data: EnrollValues) => {
     try {
-      const formBaseURL = "https://docs.google.com/forms/d/e/1FAIpQLSeYaHH9MKnGE1QuZemPvHNdWfNaCN6myO1orGNnk6PwWOGytw/viewform";
+      // ✅ IMPORTANT: use formResponse (not viewform)
+      const formURL =
+        "https://docs.google.com/forms/d/e/1FAIpQLSeYaHH9MKnGE1QuZemPvHNdWfNaCN6myO1orGNnk6PwWOGytw/formResponse";
 
       const params = new URLSearchParams();
 
-      // params.append("entry.1931440134", data.name);
-      // params.append("entry.890822922", data.email);
-      // params.append("entry.986118443", data.phone);
-      // params.append("entry.1868126992", data.course);
+      // ✅ Correct entry IDs from your form
       params.append("entry.572915421", data.name);
       params.append("entry.2105147788", data.email);
       params.append("entry.1317216189", data.phone);
@@ -51,19 +47,22 @@ const Enroll = () => {
 
       await fetch(formURL, {
         method: "POST",
-        mode: "no-cors",
+        mode: "no-cors", // required for Google Forms
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
         },
-        body: params,
+        body: params.toString(),
       });
 
-      console.log("Submitted:", data); // debug
+      console.log("Submitted:", data);
 
       toast.success("Enrollment Submitted Successfully!");
       reset();
+
+      // optional redirect
+      setTimeout(() => navigate("/"), 1200);
     } catch (error) {
-      console.error(error);
+      console.error("Error:", error);
       toast.error("Submission failed");
     }
   };
@@ -82,14 +81,17 @@ const Enroll = () => {
           >
             <ArrowLeft className="w-4 h-4" /> Back to home
           </button>
+
           <div className="max-w-2xl">
             <div className="inline-flex items-center gap-2 glass-dark px-4 py-2 rounded-full text-sm mb-4">
-              <GraduationCap className="w-4 h-4 text-accent" /> Start Your
-              Journey
+              <GraduationCap className="w-4 h-4 text-accent" />
+              Start Your Journey
             </div>
+
             <h1 className="font-display text-4xl md:text-6xl font-bold mb-4">
               Enroll in <span className="gradient-text">Skyspeak Academy</span>
             </h1>
+
             <p className="text-primary-foreground/80 text-lg">
               Fill out the form below and our admissions team will contact you
               within 24 hours.
@@ -102,8 +104,9 @@ const Enroll = () => {
         <div className="container">
           <form
             onSubmit={handleSubmit(onSubmit)}
-            className="glass rounded-3xl p-6 md:p-10 max-w-2xl mx-auto shadow-[var(--shadow-elegant)] space-y-5 animate-scale-in"
+            className="glass rounded-3xl p-6 md:p-10 max-w-2xl mx-auto shadow-[var(--shadow-elegant)] space-y-5"
           >
+            {/* Name */}
             <div>
               <Label htmlFor="name">Full Name *</Label>
               <Input
@@ -119,6 +122,7 @@ const Enroll = () => {
               )}
             </div>
 
+            {/* Email + Phone */}
             <div className="grid sm:grid-cols-2 gap-5">
               <div>
                 <Label htmlFor="email">Email *</Label>
@@ -135,6 +139,7 @@ const Enroll = () => {
                   </p>
                 )}
               </div>
+
               <div>
                 <Label htmlFor="phone">Phone *</Label>
                 <Input
@@ -151,6 +156,7 @@ const Enroll = () => {
               </div>
             </div>
 
+            {/* Course */}
             <div>
               <Label htmlFor="course">Course *</Label>
               <Select
@@ -159,9 +165,10 @@ const Enroll = () => {
                   setValue("course", v, { shouldValidate: true })
                 }
               >
-                <SelectTrigger id="course" className="mt-1.5 bg-white/70 h-11">
+                <SelectTrigger className="mt-1.5 bg-white/70 h-11">
                   <SelectValue placeholder="Select a course" />
                 </SelectTrigger>
+
                 <SelectContent>
                   {COURSES.map((c) => (
                     <SelectItem key={c} value={c}>
@@ -170,6 +177,7 @@ const Enroll = () => {
                   ))}
                 </SelectContent>
               </Select>
+
               {errors.course && (
                 <p className="text-xs text-destructive mt-1">
                   {errors.course.message}
@@ -177,10 +185,11 @@ const Enroll = () => {
               )}
             </div>
 
+            {/* Submit */}
             <Button
               type="submit"
               disabled={isSubmitting}
-              className="btn-shine w-full bg-accent text-accent-foreground hover:bg-accent/90 shadow-[var(--shadow-gold)] h-12 text-base"
+              className="w-full bg-accent text-accent-foreground h-12"
             >
               {isSubmitting ? "Submitting..." : "Submit Enrollment"}
             </Button>
