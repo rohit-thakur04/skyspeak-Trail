@@ -36,8 +36,7 @@ const Enroll = () => {
   // };
   const onSubmit = async (data) => {
     try {
-      const formURL =
-        "https://docs.google.com/forms/d/e/1FAIpQLSeYaHH9MKnGE1QuZemPvHNdWfNaCN6myO1orGNnk6PwWOGytw/viewform?usp=publish-editor";
+      const formBaseURL = "https://docs.google.com/forms/d/e/1FAIpQLSeYaHH9MKnGE1QuZemPvHNdWfNaCN6myO1orGNnk6PwWOGytw/viewform";
 
       const params = new URLSearchParams();
 
