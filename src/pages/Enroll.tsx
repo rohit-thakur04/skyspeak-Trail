@@ -37,14 +37,18 @@ const Enroll = () => {
   const onSubmit = async (data) => {
     try {
       const formURL =
-        "https://docs.google.com/forms/d/e/1FAIpQLScsJ6p5PSaIM1u-XRvqMUPHH935UhqJMAYM2xFiZc2yDNqqvw/formResponse";
+        "https://docs.google.com/forms/d/e/1FAIpQLSeYaHH9MKnGE1QuZemPvHNdWfNaCN6myO1orGNnk6PwWOGytw/viewform?usp=publish-editor";
 
       const params = new URLSearchParams();
 
-      params.append("entry.1931440134", data.name);
-      params.append("entry.890822922", data.email);
-      params.append("entry.986118443", data.phone);
-      params.append("entry.1868126992", data.course);
+      // params.append("entry.1931440134", data.name);
+      // params.append("entry.890822922", data.email);
+      // params.append("entry.986118443", data.phone);
+      // params.append("entry.1868126992", data.course);
+      params.append("entry.572915421", data.name);
+      params.append("entry.2105147788", data.email);
+      params.append("entry.1317216189", data.phone);
+      params.append("entry.50744511", data.course);
 
       await fetch(formURL, {
         method: "POST",
